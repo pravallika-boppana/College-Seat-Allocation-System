@@ -1,9 +1,23 @@
 package com.user;
 
+import java.util.PriorityQueue;
+
 public class Branch {
 	private String branchId;
 	private int threshold;
 	private int intake;
+	private int filled;
+	PriorityQueue<Integer> allotedRanks = new PriorityQueue<Integer>();
+	public Branch(int filled) {
+		super();
+		this.filled = filled;
+	}
+	public int getFilled() {
+		return filled;
+	}
+	public void setFilled(int filled) {
+		this.filled = filled;
+	}
 	public Branch(String branchId, int threshold, int intake) {
 		super();
 		this.branchId = branchId;
