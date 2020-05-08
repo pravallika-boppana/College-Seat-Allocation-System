@@ -44,7 +44,7 @@ public class User {
 		{  
 		e.printStackTrace();  
 		}  
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		/*BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		System.out.println("Enter your choice:");
 		System.out.println("1.Request seat allocation");
 		System.out.println("2.Top X desirable colleges");
@@ -53,8 +53,7 @@ public class User {
 		int choice = Integer.parseInt(br.readLine());
 		switch(choice) {
 		case 1: System.out.println("Enter Student Id");
-				System.out.println("Enter Student preferences");
-		}
+		}*/
 		
 		
 	}
