@@ -4,24 +4,44 @@ import java.util.HashMap;
 import com.user.Branch;
 
 public class College {
-	private String collegeName;
-	private String collegeCode;
-	int totalIntake;
+	private String clgName;
+	private String clgId;
+	private int totalIntake;
+	private int filled;
+	private int totalPref;
+	public int getFilled() {
+		return filled;
+	}
+	public void setFilled(int filled) {
+		this.filled = filled;
+	}
+	public int getTotalPref() {
+		return totalPref;
+	}
+	public void setTotalPref(int totalPref) {
+		this.totalPref = totalPref;
+	}
 	HashMap<String, Branch> branches = new HashMap<String, Branch>();
 	public void addBranch(Branch branch) {
 		branches.put(branch.getBranchId(), branch);
 	}
-	public String getCollegeName() {
-		return collegeName;
+	public College(String clgName, String clgId, int totalIntake) {
+		super();
+		this.clgName = clgName;
+		this.clgId = clgId;
+		this.totalIntake = totalIntake;
 	}
-	public void setCollegeName(String collegeName) {
-		this.collegeName = collegeName;
+	public String getClgName() {
+		return clgName;
 	}
-	public String getCollegeCode() {
-		return collegeCode;
+	public void setClgName(String clgName) {
+		this.clgName = clgName;
 	}
-	public void setCollegeCode(String collegeCode) {
-		this.collegeCode = collegeCode;
+	public String getClgId() {
+		return clgId;
+	}
+	public void setClgId(String clgId) {
+		this.clgId = clgId;
 	}
 	public int getTotalIntake() {
 		return totalIntake;
@@ -29,15 +49,11 @@ public class College {
 	public void setTotalIntake(int totalIntake) {
 		this.totalIntake = totalIntake;
 	}
-	public College(String collegeName, String collegeCode, int totalIntake) {
-		super();
-		this.collegeName = collegeName;
-		this.collegeCode = collegeCode;
-		this.totalIntake = totalIntake;
-	}
 	@Override
 	public String toString() {
-		return "College [collegeName=" + collegeName + ", collegeCode=" + collegeCode + ", totalIntake=" + totalIntake
-				+ ", branches=" + branches + "]";
+		return "College [clgName=" + clgName + ", clgId=" + clgId + ", totalIntake=" + totalIntake + ", branches="
+				+ branches + "]";
 	}
+	
+	
 }
