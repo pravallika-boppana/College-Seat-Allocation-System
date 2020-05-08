@@ -1,37 +1,48 @@
 package com.user;
 
 public class Student {
-	private String studentName;
-	private int studentId;
-	private int studentRank;
-	public Student(String studentName, int studentId, int studentRank) {
+	private String stuName;
+	private long stuId;
+	private long rank;
+	private String allotedClgId;
+	public Student(String stuName, long stuId, long rank) {
 		super();
-		this.studentName = studentName;
-		this.studentId = studentId;
-		this.studentRank = studentRank;
+		this.stuName = stuName;
+		this.stuId = stuId;
+		this.rank = rank;
 	}
-	public String getStudentName() {
-		return studentName;
+	public String getStuName() {
+		return stuName;
 	}
-	public void setStudentName(String studentName) {
-		this.studentName = studentName;
+	public void setStuName(String stuName) {
+		this.stuName = stuName;
 	}
-	public int getStudentId() {
-		return studentId;
+	public long getStuId() {
+		return stuId;
 	}
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
+	public void setStuId(long stuId) {
+		this.stuId = stuId;
 	}
-	public int getStudentRank() {
-		return studentRank;
+	public long getRank() {
+		return rank;
 	}
-	public void setStudentRank(int studentRank) {
-		this.studentRank = studentRank;
+	public String getAllotedClgId() {
+		return allotedClgId;
+	}
+	public void setAllotedClgId(String allotedClgId) {
+		this.allotedClgId = allotedClgId;
+	}
+	public Student(String allotedClgId) {
+		super();
+		this.allotedClgId = allotedClgId;
+	}
+	public void setRank(long rank) {
+		this.rank = rank;
 	}
 	@Override
 	public String toString() {
-		return "Student [studentName=" + studentName + ", studentId=" + studentId + ", studentRank=" + studentRank
-				+ "]";
+		return "Student [stuName=" + stuName + ", stuId=" + stuId + ", rank=" + rank + "]";
 	}
+	
 	
 }
