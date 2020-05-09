@@ -9,6 +9,7 @@ public class College {
 	private int totalIntake;
 	private int filled;
 	private int totalPref;
+	HashMap<String, Branch> branches = new HashMap<String, Branch>();
 	public int getFilled() {
 		return filled;
 	}
@@ -21,7 +22,6 @@ public class College {
 	public void setTotalPref(int totalPref) {
 		this.totalPref = totalPref;
 	}
-	HashMap<String, Branch> branches = new HashMap<String, Branch>();
 	public void addBranch(Branch branch) {
 		branches.put(branch.getBranchId(), branch);
 	}
