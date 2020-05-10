@@ -50,7 +50,7 @@ public class UserInteractionService {
 		   }
 		  totalCollegeDetails.addCollege(college);
 		}
-		totalCollegeDetails.printAllColleges();
+		//totalCollegeDetails.printAllColleges();
 		}
 		catch (IOException e)
 		{  
