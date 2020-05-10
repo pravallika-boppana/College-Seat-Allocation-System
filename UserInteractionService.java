@@ -37,7 +37,7 @@ public class UserInteractionService {
 		student = new Student(studentDetails[0], Long.parseLong(studentDetails[1]), Long.parseLong(studentDetails[2]));
 		s.addStudent(student);
 		}
-		s.getAllStudents();
+		//s.getAllStudents();
 		line = "";
 		
 		br = new BufferedReader(new FileReader("C:\\Users\\user\\Desktop\\acms project\\Counselling\\src\\college.csv"));
