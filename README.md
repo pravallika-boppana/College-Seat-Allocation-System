@@ -9,7 +9,7 @@ Use cases :
         a. Stream consists of “Students preference to colleges” information. You can assume that this stream of data keeps flowing into your system for few days(Counselling period).
         b. Assume you have a large file with Student details with ranks
         c. Assume you have a large file with College details including the seats per branch.
-    2. Process : System should allocate seats to students based on their preference and rank. System should also maintain in-  memory DS to handle the APIs consistently.
+    2. Process : System should allocate seats to students based on their preference and rank. System should also maintain in-memory DS to handle the APIs consistently.
     3. Output : System should provide the APIs that can give the below details
         a. Given a student ID, provide the seat allocation
         b. Return the topX desirable colleges
