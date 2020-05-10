@@ -1,5 +1,7 @@
 package com.user;
 
+import com.dao.StudentDao;
+
 public class Student {
 	private String stuName;
 	private long stuId;
@@ -26,9 +28,6 @@ public class Student {
 	public long getRank() {
 		return rank;
 	}
-	public String getAllotedClgId() {
-		return allotedClgId;
-	}
 	public void setAllotedClgId(String allotedClgId) {
 		this.allotedClgId = allotedClgId;
 	}
@@ -39,9 +38,16 @@ public class Student {
 	public void setRank(long rank) {
 		this.rank = rank;
 	}
+	public String getAllotedCollege(Long stdId) {
+		StudentDao student = new StudentDao();
+		return student.getClg(stdId);
+	}
 	@Override
 	public String toString() {
 		return "Student [stuName=" + stuName + ", stuId=" + stuId + ", rank=" + rank + "]";
+	}
+	public Student() {
+		super();
 	}
 	
 	
