@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import com.dao.StudentDao;
-import com.globalStore.Data;
 import com.user.Student;
 import com.dao.CollegeDao;;
 public class UserInteractionService {
@@ -23,6 +22,9 @@ public class UserInteractionService {
 		String splitBy = ",";  
 		CollegeDao totalCollegeDetails = new CollegeDao();
 		College college = new College();
+		Student student = new Student();
+		CounsellingService counselling = new CounsellingService();
+		AllotmentService allotment = new AllotmentService();
 		try   
 		{  
 		//parsing a CSV file into BufferedReader class constructor  
@@ -32,7 +34,7 @@ public class UserInteractionService {
 		{  
 		String[] studentDetails = line.split(splitBy);    // use comma as separator  
 		
-		Student student = new Student(studentDetails[0], Long.parseLong(studentDetails[1]), Long.parseLong(studentDetails[2]));
+		student = new Student(studentDetails[0], Long.parseLong(studentDetails[1]), Long.parseLong(studentDetails[2]));
 		s.addStudent(student);
 		}
 		s.getAllStudents();
@@ -49,55 +51,86 @@ public class UserInteractionService {
 		  totalCollegeDetails.addCollege(college);
 		}
 		totalCollegeDetails.printAllColleges();
-		//Data dp = new Data();
-		//dp.print();
-		//dp.printAllColleges();
 		}
 		catch (IOException e)
 		{  
 		e.printStackTrace();  
 		}  
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Enter your choice:");
-		System.out.println("1.Request seat allocation");
-		System.out.println("2.Top X desirable colleges");
-		System.out.println("3.Top X filled colleges");
-		System.out.println("4.Top X unfilled colleges");
-		System.out.println("5.Get Alloted College");
-		System.out.println("6.Get Threshold of the college");
-		int choice = Integer.parseInt(br.readLine());
+		int choice;
 		int x;
-		switch(choice) {
-		case 1: System.out.println("Enter Student Id");
-				long stuId = Long.parseLong(br.readLine());
-				System.out.println("Enter Student preferences as college Id and Branch Id");
-				ArrayList<String[]> pref = new ArrayList<String[]>();
-				for(int i = 0; i < 3; i++) {
-					String[] preferences = br.readLine().split(" ");
-					pref.add(preferences);
-				}
-				CounsellingService c = new CounsellingService();
-				RequestedAllotment ra = c.addPreferences(stuId, pref);
-				//c.print();
+		while(true) {
+			System.out.println("Enter your choice:");
+			System.out.println("1.Request seat allocation");
+			System.out.println("2.Top X desirable colleges");
+			System.out.println("3.Top X filled colleges");
+			System.out.println("4.Top X unfilled colleges");
+			System.out.println("5.Get Alloted College");
+			System.out.println("6.Get Threshold of the college");
+			choice = Integer.parseInt(br.readLine());
+			switch(choice) {
+				case 1: System.out.println("Enter Student Id");
+						long stuId = Long.parseLong(br.readLine());
+						System.out.println("Enter Student preferences as college Id and Branch Id");
+						ArrayList<String[]> pref = new ArrayList<String[]>();
+						for(int i = 0; i < 3; i++) {
+							String[] preferences = br.readLine().split(" ");
+							pref.add(preferences);
+						}
+						RequestedAllotment ra = counselling.addPreferences(stuId, pref);
+						allotment.allotClg(ra);
+						break;
+				case 2:System.out.println("How many top desirable colleges you want");
+						x = Integer.parseInt(br.readLine());
+						if(checkRange(x)) {
+						String[] topDesirableClgs = counselling.topDesirable(x);
+						System.out.println("Top " + x +" Desirable colleges");
+						for(int i = 0; i < x; i++) {
+							System.out.println(topDesirableClgs[i]);
+						}
+						}
+						else
+							System.out.println("Data not available");
+						break;
+				case 3:System.out.println("How many top filled colleges you want");
+						x = Integer.parseInt(br.readLine());
+						if(checkRange(x)) {
+							String[] topFilledClgs = counselling.topDesirable(x);
+							System.out.println("Top " + x +" filled colleges");
+							for(int i = 0; i < x; i++) {
+								System.out.println(topFilledClgs[i]);
+							}
+						}
+						else
+							System.out.println("Data not available");
+						break;
+				case 4:System.out.println("How many top unfilled colleges you want");
+						x = Integer.parseInt(br.readLine());
+						if(checkRange(x)) {
+							String[] topUnfilledClgs = counselling.topDesirable(x);
+							System.out.println("Top " + x +" unfilled colleges");
+							for(int i = 0; i < x; i++) {
+								System.out.println(topUnfilledClgs[i]);
+							}
+						}
+						else
+							System.out.println("Data not available");
+						break;
+				case 5:System.out.println("Enter student Id");
+						long stdId = Long.parseLong(br.readLine());
+						System.out.println(student.getAllotedCollege(stdId));
+						break;
+				case 6:System.out.println("Enter college id");
+						String clgId = br.readLine();
+						college.getThreshold(clgId);
+						break;	
+				default:System.out.println("Invalid choice");
+				        break;
+			}
+			System.out.println("Do you want to continue(YES / NO)");
+			if(br.readLine().equals("NO"))
 				break;
-		case 2:System.out.println("How many top desirable colleges you want");
-				x = Integer.parseInt(br.readLine());
-				CounsellingService ch = new CounsellingService();
-		case 3:System.out.println("How many top filled colleges you want");
-				x = Integer.parseInt(br.readLine());
-		case 4:System.out.println("How many top unfilled colleges you want");
-				x = Integer.parseInt(br.readLine());
-		case 5:System.out.println("Enter student Id");
-				long stdId = Long.parseLong(br.readLine());
-		case 6:System.out.println("Enter college id");
-				String clgId = br.readLine();
-				//clg.getThreshold(clgId);
-				//CollegeDao p = new CollegeDao();
-				college.getThreshold(clgId);
-				
 		}
-		
-		
 	}
 
 }
