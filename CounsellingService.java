@@ -27,7 +27,6 @@ public class CounsellingService {
 			if(college.addClg.clgDetails.containsKey(pref.get(i)[0])) {
 				clg = college.addClg.clgDetails.get(pref.get(i)[0]);
 				clg.setTotalPref( clg.getTotalPref() + 1);
-				System.out.println(clg.getTotalPref());
 			}
 		}
 		return addPref;
