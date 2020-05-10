@@ -83,11 +83,9 @@ public class UserInteractionService {
 				case 2:System.out.println("How many top desirable colleges you want");
 						x = Integer.parseInt(br.readLine());
 						if(checkRange(x)) {
-						String[] topDesirableClgs = counselling.topDesirable(x);
+						
 						System.out.println("Top " + x +" Desirable colleges");
-						for(int i = 0; i < x; i++) {
-							System.out.println(topDesirableClgs[i]);
-						}
+						counselling.topDesirable(x);
 						}
 						else
 							System.out.println("Data not available");
@@ -95,11 +93,8 @@ public class UserInteractionService {
 				case 3:System.out.println("How many top filled colleges you want");
 						x = Integer.parseInt(br.readLine());
 						if(checkRange(x)) {
-							String[] topFilledClgs = counselling.topDesirable(x);
 							System.out.println("Top " + x +" filled colleges");
-							for(int i = 0; i < x; i++) {
-								System.out.println(topFilledClgs[i]);
-							}
+							counselling.topFilled(x);
 						}
 						else
 							System.out.println("Data not available");
@@ -107,11 +102,8 @@ public class UserInteractionService {
 				case 4:System.out.println("How many top unfilled colleges you want");
 						x = Integer.parseInt(br.readLine());
 						if(checkRange(x)) {
-							String[] topUnfilledClgs = counselling.topDesirable(x);
 							System.out.println("Top " + x +" unfilled colleges");
-							for(int i = 0; i < x; i++) {
-								System.out.println(topUnfilledClgs[i]);
-							}
+							counselling.topUnfilled(x);
 						}
 						else
 							System.out.println("Data not available");
