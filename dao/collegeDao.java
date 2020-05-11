@@ -17,9 +17,9 @@ public class CollegeDao {
 	}
 	
 	public College getThreshold(String clgId) {
-		System.out.println(Data.colleges.containsKey(clgId));
-		return null; }
-	
+		Data.colleges.get(clgId).branches.forEach((k,v) -> System.out.println(v.getBranchId() + " " + v.getThreshold()));
+		return null; 
+	}
 	
 
 	public void decrementFilled(Preference preference) {
