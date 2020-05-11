@@ -4,7 +4,6 @@ public class Preference {
 	private String clgId;
 	private String branchId;
 	public Preference(String clgId, String branchId) {
-		super();
 		this.clgId = clgId;
 		this.branchId = branchId;
 	}
