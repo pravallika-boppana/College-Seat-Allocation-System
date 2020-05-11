@@ -8,11 +8,7 @@ public class Branch {
 	private int intake;
 	private int filled;
 	PriorityQueue<Student> allotedRanks = new PriorityQueue<Student>();
-	public Branch(int filled) {
-		super();
-		this.filled = filled;
-	}
-	public int getFilled() {
+		public int getFilled() {
 		return filled;
 	}
 	public void setFilled(int filled) {
