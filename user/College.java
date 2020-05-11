@@ -10,9 +10,17 @@ public class College {
 	private int filled;
 	private int totalPref;
 	HashMap<String, Branch> branches = new HashMap<String, Branch>();
-	
-	College() {
-		
+	public College(String clgName, String clgId, int totalIntake) {
+		super();
+		this.clgName = clgName;
+		this.clgId = clgId;
+		this.totalIntake = totalIntake;
+	}
+	public HashMap<String, Branch> getBranches() {
+		return branches;
+	}
+	public void setBranches(HashMap<String, Branch> branches) {
+		this.branches = branches;
 	}
 	public int getFilled() {
 		return filled;
@@ -29,12 +37,7 @@ public class College {
 	public void addBranch(Branch branch) {
 		branches.put(branch.getBranchId(), branch);
 	}
-	public College(String clgName, String clgId, int totalIntake) {
-		super();
-		this.clgName = clgName;
-		this.clgId = clgId;
-		this.totalIntake = totalIntake;
-	}
+	
 	public String getClgName() {
 		return clgName;
 	}
@@ -53,19 +56,10 @@ public class College {
 	public void setTotalIntake(int totalIntake) {
 		this.totalIntake = totalIntake;
 	}
+	
 	@Override
 	public String toString() {
 		return "College [clgName=" + clgName + ", clgId=" + clgId + ", totalIntake=" + totalIntake + ", branches="
 				+ branches + "]";
-	}
-	public void getThreshold(String clgId2) {
-		// TODO Auto-generated method stub
-		
-	}
-	public Branch getBranch(Preference pre) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
+	}	
 }
