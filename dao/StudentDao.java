@@ -1,34 +1,38 @@
 package com.dao;
-import java.util.ArrayList;
-
 import com.globalStore.Data;
 import com.globalStore.Trie;
+import com.user.Preference;
 import com.user.RequestedAllotment;
 import com.user.Student;
 
 public class StudentDao {
-	Data data = new Data();
+	
     public void addStudent(Student student) {
-    	data.storeStudent(student, student.getStuId());
-    }
+    	Trie.insertStudent(Data.students, student.getStuId(), student);
+    	Student s1 = Trie.getStudent(Data.students, student.getStuId());
+    	}
+    
     
     public Student getStudent(Long id) {
-    	return Trie.getStudent(data.root, id);
-    	    	
-    }
+    	System.out.println("Entered get Student " + id);
+    	return Trie.getStudent(Data.students, id); }
     
-    public void updateAllotedPreference(int i) {
-    	
-    }
+    public RequestedAllotment getRequestedAllotment(long stuId) {
+		return Trie.getRequestedAllotment(Data.students, stuId); }
 
-	public String getClg(Long stdId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public void updateAllotedPreference(RequestedAllotment requestedAllotment, int i) {
+		requestedAllotment.setAllotedPreference(i);
+		Trie.updateRequestedAllotment(Data.students, requestedAllotment); }
 
-	public RequestedAllotment getRequestedAllotment(long stuId) {
-		// TODO Auto-generated method stub
-		return null;
+
+	public String getAllotedCollege(long stdId) {
+		RequestedAllotment requestedAllotment = Trie.getRequestedAllotment(Data.students, stdId);
+		Preference preferences[] = requestedAllotment.getPreferences(); 
+		int allotedPreference = requestedAllotment.getAllotedPreference();
+		if (allotedPreference == -1) return "not alloted";
+		String college =  preferences[allotedPreference].getClgId();
+		String branch = preferences[allotedPreference].getBranchId();
+		return college + " " + branch;
 	}
     
 }
