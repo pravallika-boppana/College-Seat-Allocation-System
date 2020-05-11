@@ -8,6 +8,22 @@ public class RequestedAllotment {
 	private int allotedPreference;
 	private int counsellingId;
 	Preference preferences[] = new Preference[3];
+	
+	RequestedAllotment(Long stuId, Preference preferences[]) {
+		this.stuId = stuId;
+		this.allotedPreference = -1;
+		for(int i = 0; i < 3; i++) {
+		    this.preferences[i] = preferences[i]; }
+		
+	}
+
+	public Preference[] getPreferences() {
+		return preferences;
+	}
+
+	public void setPreferences(Preference[] preferences) {
+		this.preferences = preferences;
+	}
 
 	public long getStuId() {
 		return stuId;
