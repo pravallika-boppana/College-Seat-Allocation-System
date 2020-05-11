@@ -38,10 +38,7 @@ public class Student {
 	public void setRank(long rank) {
 		this.rank = rank;
 	}
-	public String getAllotedCollege(Long stdId) {
-		StudentDao studentDao = new StudentDao();
-		return studentDao.getClg(stdId);
-	}
+	
 	@Override
 	public String toString() {
 		return "Student [stuName=" + stuName + ", stuId=" + stuId + ", rank=" + rank + "]";
