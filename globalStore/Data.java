@@ -1,22 +1,15 @@
-package com.globalStore;
+ackage com.globalStore;
 import com.user.*;
 
 import java.util.HashMap;
+import java.util.PriorityQueue;
+
 import com.user.College;
 import com.user.Branch;
 
 public class Data {
-	public static HashMap<String, College> clgDetails = new HashMap<String, College>();
-	public Trie root = new Trie();
-	public void print() {
-		System.out.println(clgDetails.size());
-	}
-	
-	public static void storeClgDetails(College college) {
-		clgDetails.put(college.getClgId(), college);
-	}
-	
-	public void storeStudent(Student student, Long id) {
-		root.insertStudent(root, id, student);
-	}
-}
+	public static HashMap<String, College> colleges = new HashMap<String, College>();
+	public static Trie students = new Trie();
+	public static PriorityQueue<College> topXDesirable = new PriorityQueue<>(new PrefMaxComparator());	
+	public static PriorityQueue<College> topXFilled = new PriorityQueue<>(new FillMaxComparator());	
+	public static PriorityQueue<College> topXunFilled = new PriorityQueue<>(new UnfillMinComparator());	 }
