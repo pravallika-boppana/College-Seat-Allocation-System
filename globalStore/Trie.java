@@ -1,4 +1,4 @@
-package com.globalStore;
+ackage com.globalStore;
 
 import com.user.RequestedAllotment;
 import com.user.Student;
@@ -23,7 +23,7 @@ public class Trie  {
             temp += "0"; }
         return temp + idS; }
     
-     void insertStudent(Trie root, Long id, Student student) {
+     public static void insertStudent(Trie root, Long id, Student student) {
         String idS = convertToString(id);
         for(int i = 0; i < 10; i++) {
             if (root.child[idS.charAt(i) - 48] == null) {
@@ -49,7 +49,7 @@ public class Trie  {
             root = root.child[idS.charAt(i) - 48]; }
             return root.student; }
     
-    static RequestedAllotment getRequestedAllotment(Trie root, Long id) {
+    public static RequestedAllotment getRequestedAllotment(Trie root, Long id) {
         String idS = convertToString(id);
         for(int i = 0; i < 10; i++) {
             if (root.child[idS.charAt(i) - 48] == null) {
@@ -73,4 +73,11 @@ public class Trie  {
             root = root.child[idS.charAt(i) - 48]; }
         return root.requestedAllotment != null; }
     
-    }
+
+	public static void updateRequestedAllotment(Trie root, RequestedAllotment requestedAllotment) {
+		String idS = convertToString(requestedAllotment.getStuId());
+        for(int i = 0; i < 10; i++) {
+            root = root.child[idS.charAt(i) - 48]; }
+        root.requestedAllotment = requestedAllotment; }
+		
+}
