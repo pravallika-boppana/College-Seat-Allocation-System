@@ -16,6 +16,7 @@ class AllotmentService {
                 	System.out.println("Eligible");
                     if(isSeatAvailable(requestedAllotment.preferences[i])){
                         allocateSeat(requestedAllotment, i);
+                        break;
                     }
                     else if(isReplacable(student.getRank(), requestedAllotment.preferences[i])) {
                         allocateSeat(requestedAllotment, i);
@@ -23,6 +24,7 @@ class AllotmentService {
                         Student replacedStudent = getReplacedStudent(requestedAllotment.preferences[i]);
                         RequestedAllotment replacedReq = studentDao.getRequestedAllotment(replacedStudent.getStuId()); 
                         allotClg(replacedReq);
+                        break;
                     }
                 }
             }
