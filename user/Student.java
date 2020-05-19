@@ -1,6 +1,6 @@
-package com.user;
+package com.counselling.user;
 
-import com.dao.StudentDao;
+import com.counselling.dao.StudentDao;
 
 public class Student {
 	private String stuName;

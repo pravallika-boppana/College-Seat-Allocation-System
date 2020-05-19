@@ -1,7 +1,8 @@
-package com.user;
+package com.counselling.user;
 
 import java.util.HashMap;
-import com.user.Branch;
+
+import com.counselling.user.Branch;
 
 public class College {
 	private String clgName;
@@ -10,12 +11,7 @@ public class College {
 	private int filled;
 	private int totalPref;
 	HashMap<String, Branch> branches = new HashMap<String, Branch>();
-	public College(String clgName, String clgId, int totalIntake) {
-		super();
-		this.clgName = clgName;
-		this.clgId = clgId;
-		this.totalIntake = totalIntake;
-	}
+	
 	public HashMap<String, Branch> getBranches() {
 		return branches;
 	}
@@ -37,7 +33,12 @@ public class College {
 	public void addBranch(Branch branch) {
 		branches.put(branch.getBranchId(), branch);
 	}
-	
+	public College(String clgName, String clgId, int totalIntake) {
+		super();
+		this.clgName = clgName;
+		this.clgId = clgId;
+		this.totalIntake = totalIntake;
+	}
 	public String getClgName() {
 		return clgName;
 	}
@@ -61,5 +62,10 @@ public class College {
 	public String toString() {
 		return "College [clgName=" + clgName + ", clgId=" + clgId + ", totalIntake=" + totalIntake + ", branches="
 				+ branches + "]";
-	}	
+	}
+	
+	
+	
+	
+	
 }

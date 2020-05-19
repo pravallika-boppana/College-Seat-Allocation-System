@@ -1,7 +1,7 @@
-package com.user;
+package com.counselling.user;
 import java.util.Arrays;
 
-import com.user.Preference;
+import com.counselling.user.Preference;
 
 public class RequestedAllotment {
 	private long stuId;
@@ -9,7 +9,7 @@ public class RequestedAllotment {
 	private int counsellingId;
 	Preference preferences[] = new Preference[3];
 	
-	RequestedAllotment(Long stuId, Preference preferences[]) {
+	public RequestedAllotment(Long stuId, Preference preferences[]) {
 		this.stuId = stuId;
 		this.allotedPreference = -1;
 		for(int i = 0; i < 3; i++) {

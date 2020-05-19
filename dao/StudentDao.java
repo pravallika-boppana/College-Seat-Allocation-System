@@ -1,9 +1,10 @@
-package com.dao;
-import com.globalStore.Data;
-import com.globalStore.Trie;
-import com.user.Preference;
-import com.user.RequestedAllotment;
-import com.user.Student;
+package com.counselling.dao;
+
+import com.counselling.globalStore.Data;
+import com.counselling.globalStore.Trie;
+import com.counselling.user.Preference;
+import com.counselling.user.RequestedAllotment;
+import com.counselling.user.Student;
 
 public class StudentDao {
 	
@@ -14,7 +15,6 @@ public class StudentDao {
     
     
     public Student getStudent(Long id) {
-    	System.out.println("Entered get Student " + id);
     	return Trie.getStudent(Data.students, id); }
     
     public RequestedAllotment getRequestedAllotment(long stuId) {

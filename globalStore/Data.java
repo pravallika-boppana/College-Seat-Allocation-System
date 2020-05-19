@@ -1,11 +1,8 @@
-ackage com.globalStore;
-import com.user.*;
-
+package com.counselling.globalStore;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
-import com.user.College;
-import com.user.Branch;
+import com.counselling.user.*;
 
 public class Data {
 	public static HashMap<String, College> colleges = new HashMap<String, College>();

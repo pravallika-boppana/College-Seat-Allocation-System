@@ -1,4 +1,4 @@
-package com.user;
+package com.counselling.user;
 
 public class Preference {
 	private String clgId;

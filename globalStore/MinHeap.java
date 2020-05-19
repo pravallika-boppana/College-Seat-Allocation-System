@@ -1,5 +1,9 @@
+package com.counselling.globalStore;
+
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+
+import com.counselling.user.College;
 
 public class MinHeap {
 	PriorityQueue<College> pq = new PriorityQueue<College>(500, new CollegeMinComparator());

@@ -1,16 +1,15 @@
-ackage com.globalStore;
+package com.counselling.globalStore;
 
-import com.user.RequestedAllotment;
-import com.user.Student;
+import com.counselling.user.RequestedAllotment;
+import com.counselling.user.Student;
 
 public class Trie  {
     Trie child[] = new Trie[10];
     boolean isLeaf;
-    Student student;
-    RequestedAllotment requestedAllotment;
+    TrieObject trieObject;
     Trie() {
-        student = null;
-        requestedAllotment = null;
+        trieObject.student = null;
+        trieObject.requestedAllotment = null;
         isLeaf = false;
         for(int i = 0; i < 10; i++) {
             child[i] = null;} } 

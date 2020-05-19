@@ -1,13 +1,15 @@
-package com.user;
+package com.counselling.user;
 import java.io.BufferedReader;  
 import java.io.FileReader;  
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import com.dao.StudentDao;
-import com.user.Student;
-import com.dao.CollegeDao;;
+import com.counselling.dao.CollegeDao;
+import com.counselling.dao.StudentDao;
+import com.counselling.service.CounsellingService;
+import com.counselling.service.AllotmentService;
+import com.counselling.user.Student;;
 public class UserInteractionService {
 	
 	public static boolean checkRange(int x) {
@@ -66,6 +68,7 @@ public class UserInteractionService {
 			System.out.println("4.Top X unfilled colleges");
 			System.out.println("5.Get Alloted College");
 			System.out.println("6.Get Threshold of the college");
+			System.out.println("7.Get Intake and Filled number of seats  of College");
 			choice = Integer.parseInt(br.readLine());
 			switch(choice) {
 				case 1: System.out.println("Enter Student Id");
@@ -114,7 +117,11 @@ public class UserInteractionService {
 				case 6:System.out.println("Enter college id");
 						String clgId = br.readLine();
 						collegeDao.getThreshold(clgId);
-						break;	
+						break;
+				case 7:System.out.println("Enter College ID : ");
+				       String clgId2 = br.readLine();
+				       collegeDao.getIntakeAndFilled(clgId2);
+				       break;
 				default:System.out.println("Invalid choice");
 				        break;
 			}
