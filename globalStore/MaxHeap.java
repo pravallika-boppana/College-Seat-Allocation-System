@@ -8,7 +8,7 @@ public class MaxHeap {
 	void enterCollege(College clg){
         this.pq.add(clg);
     }
-    ArrayList<College> getTopX(int x){
+    public ArrayList<College> getTopX(int x){
     	ArrayList<College> ar = new ArrayList<>();
         for(int i = 0;i < x;i++){
             ar.add(this.pq.poll());
@@ -17,7 +17,7 @@ public class MaxHeap {
             this.pq.add(i);
         }
         return ar;
-    }
+    } 
     void updateCollegePreference(College college){
     	if(this.pq.contains(college)){
     		this.pq.remove(college);
