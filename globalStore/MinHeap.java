@@ -6,11 +6,11 @@ import java.util.PriorityQueue;
 import com.counselling.user.College;
 
 public class MinHeap {
-	PriorityQueue<College> pq = new PriorityQueue<College>(500, new CollegeMinComparator());
+	PriorityQueue<College> pq = new PriorityQueue<College>(500, new UnfillMinComparator());
 	void enterCollege(College clg){
         this.pq.add(clg);
     }
-    ArrayList<College> getTopX(int x){
+    public ArrayList<College> getTopX(int x){
     	ArrayList<College> ar = new ArrayList<>();
         for(int i = 0;i < x;i++){
             ar.add(this.pq.poll());
