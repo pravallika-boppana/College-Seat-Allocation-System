@@ -1,9 +1,9 @@
-package com.user;
+package com.counselling.user;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import com.dao.CollegeDao;
-import com.dao.StudentDao;
+import com.counselling.dao.CollegeDao;
+import com.counselling.dao.StudentDao;
 
 public class DataLoader {
 	 CollegeDao collegeDao = new CollegeDao();
