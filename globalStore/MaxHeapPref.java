@@ -3,7 +3,7 @@ package com.counselling.globalStore;
 import java.util.*;
 
 import com.counselling.user.College;
-public class MaxHeap {
+public class MaxHeapPref {
 	PriorityQueue<College> pq = new PriorityQueue<College>(500, new PrefMaxComparator());
 	void enterCollege(College clg){
         this.pq.add(clg);
