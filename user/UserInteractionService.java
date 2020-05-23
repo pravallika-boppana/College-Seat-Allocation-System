@@ -52,7 +52,7 @@ public class UserInteractionService {
 						x = Integer.parseInt(br.readLine());
 						if(checkRange(x)) {						
      					    System.out.println("Top " + x +" Desirable colleges");
-						    counsellingService.topDesirable(x);
+						    QueryingService.topDesirable(x);
 						}
 						else
 							System.out.println("Invalid number");
@@ -61,7 +61,7 @@ public class UserInteractionService {
 						x = Integer.parseInt(br.readLine());
 						if(checkRange(x)) {
 							System.out.println("Top " + x +" filled colleges");
-							counsellingService.topFilled(x);
+							QueryingService.topFilled(x);
 						}
 						else
 							System.out.println("Invalid number");
@@ -70,7 +70,7 @@ public class UserInteractionService {
 						x = Integer.parseInt(br.readLine());
 						if(checkRange(x)) {
 							System.out.println("Top " + x +" unfilled colleges");
-							counsellingService.topUnfilled(x);
+							QueryingService.topUnfilled(x);
 						}
 						else
 							System.out.println("Invalid number");
