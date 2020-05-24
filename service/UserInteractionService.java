@@ -79,24 +79,26 @@ public class UserInteractionService {
 		DataLoader dataLoader = new DataLoader();
 		String studentFile = args[0];
 		String collegeFile = args[1];
-		dataLoader.readDataFromFiles(studentFile, collegeFile);
-		int choice;
-		while(true) {
-			System.out.println("Enter your choice:");
-			System.out.println("1.Request seat allocation");
-			System.out.println("2.Top X desirable colleges");
-			System.out.println("3.Top X filled colleges");
-			System.out.println("4.Top X unfilled colleges");
-			System.out.println("5.Get Alloted College");
-			System.out.println("6.Get Threshold of the college");
-			choice = Integer.parseInt(br.readLine());
-			processRequest(choice);
-			System.out.println("Hit 'Y' to countinue or hit any key to exit");
-			if(br.readLine().equals("Y"))
-				continue;
-			else
-				System.out.println("Exited");
-				break;
+		if(dataLoader.isFileExists(studentFile, collegeFile)) {
+			dataLoader.readDataFromFiles(studentFile, collegeFile);
+			int choice;
+			while(true) {
+				System.out.println("Enter your choice:");
+				System.out.println("1.Request seat allocation");
+				System.out.println("2.Top X desirable colleges");
+				System.out.println("3.Top X filled colleges");
+				System.out.println("4.Top X unfilled colleges");
+				System.out.println("5.Get Alloted College");
+				System.out.println("6.Get Threshold of the college");
+				choice = Integer.parseInt(br.readLine());
+				processRequest(choice);
+				System.out.println("Hit 'Y' to countinue or hit any key to exit");
+				if(br.readLine().equals("Y"))
+					continue;
+				else
+					System.out.println("Exited");
+					break;
+			}
 		}
 	}
 }
