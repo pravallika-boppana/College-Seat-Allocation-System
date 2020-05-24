@@ -79,7 +79,7 @@ public class UserInteractionService {
 		DataLoader dataLoader = new DataLoader();
 		String studentFile = args[0];
 		String collegeFile = args[1];
-		if(dataLoader.isFileExists(studentFile, collegeFile)) {
+		if(dataLoader.isFileExists(studentFile, collegeFile) && dataLoader.isFileEmpty(studentFile, collegeFile)) {
 			dataLoader.readDataFromFiles(studentFile, collegeFile);
 			int choice;
 			while(true) {
