@@ -113,4 +113,22 @@ public class CollegeDao {
 		
 		
 	}
+	
+	public boolean isValidClgId(String clgId) {
+        if(data.colleges.containsKey(clgId))
+            return true;
+        return false;
+    }
+    
+    public boolean isValidBranchId(String branchId) {
+        if(data.branches.contains(branchId))
+            return true;
+        return false;
+    }
+    public boolean is_Valid_Branch_In_Clg(String clgId, String branchId) {
+        College college = data.colleges.get(clgId);
+        if(college.branches.containsKey(branchId))
+            return true;
+        return false;
+    }
 }
