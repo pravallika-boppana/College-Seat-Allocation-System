@@ -20,6 +20,7 @@ public class CollegeDao {
 	public void addCollege(College college) {
 		data.colleges.put(college.getClgId(), college);
 		college.branches.forEach((key,value) -> data.branches.add(key));
+		data.topXUnFilled.add(college);
 	}
 	
 	public College getCollege(String clgId) {
