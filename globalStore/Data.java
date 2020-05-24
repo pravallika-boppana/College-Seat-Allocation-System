@@ -9,6 +9,7 @@ import com.counselling.user.*;
 public class Data {
 	private static Data data = null;
 	public  HashMap<String, College> colleges = new HashMap<String, College>();
+	public HashSet<String> branches = new HashSet<String>();
 	public Trie students = new Trie(); 
 	public PriorityQueue<College> topXDesirable = new PriorityQueue<>(new PrefMaxComparator());	
 	public PriorityQueue<College> topXFilled = new PriorityQueue<>(new FillMaxComparator());	
