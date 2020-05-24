@@ -57,7 +57,21 @@ public class College {
 	public void setTotalIntake(int totalIntake) {
 		this.totalIntake = totalIntake;
 	}
-	
+	public int getUnfilled() {
+		return getTotalIntake() - getFilled();
+	}
+	public int getFilledPercent(){
+		int filledPercent = getFilled()/getTotalIntake();
+		return filledPercent*100;
+	}
+	public int getPreferredPercent(){
+		int preferredPercent = getTotalPref()/getTotalIntake();
+		return preferredPercent*100;
+	}
+	public int getUnFilledPercent(){
+		int unfilledPercent = getUnfilled()/getTotalIntake();
+		return unfilledPercent*100;
+	}
 	@Override
 	public String toString() {
 		return "College [clgName=" + clgName + ", clgId=" + clgId + ", totalIntake=" + totalIntake + ", branches="
