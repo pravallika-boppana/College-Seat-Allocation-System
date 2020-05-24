@@ -29,7 +29,10 @@ public class UserInteractionService {
 					Preference[] preferences = new Preference[3];
 					for(int i = 0; i < 3; i++) {
 						String[] preference = br.readLine().split(" ");
-						preferences[i] = new Preference(preference[0], preference[1]);
+						if(collegeDao.isValidClgId(preference[0]) && collegeDao.isValidBranchId(preference[1]) && collegeDao.is_Valid_Branch_In_Clg(preference[0], preference[1]))
+							preferences[i] = new Preference(preference[0], preference[1]);
+						else
+							break;
 					}
 					RequestedAllotment requestAllotment = counsellingService.addPreferences(stuId, preferences);
 					allotmentService.allotClg(requestAllotment);
