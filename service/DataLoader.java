@@ -27,7 +27,19 @@ public class DataLoader {
 			return false;
 		}	
 	}
-
+	public boolean isFileEmpty(String studentFile, String collegeFile) {
+		if(new File(studentFile).length() > 0 && new File(collegeFile).length() > 0)
+			return true;
+		else {
+			if(new File(studentFile).length() == 0 && new File(collegeFile).length() == 0)
+				System.out.println("Both the given files are empty");
+			else if(new File(studentFile).length() == 0)
+				System.out.println("Given student file is empty");
+			else if(new File(collegeFile).length() == 0)
+				System.out.println("Given college file is empty");
+			return false;
+		}	
+	}
 	public void readDataFromFiles(String studentFile, String collegeFile) {
 		String line = "";  
 		try   
@@ -85,4 +97,6 @@ public class DataLoader {
 			e.printStackTrace();
 		} 
 	}
+
+	
 }
