@@ -1,7 +1,5 @@
 package com.counselling.user;
 
-import com.counselling.dao.StudentDao;
-
 public class Student {
 	private String stuName;
 	private long stuId;

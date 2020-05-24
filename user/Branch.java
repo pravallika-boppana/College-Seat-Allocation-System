@@ -2,6 +2,8 @@ package com.counselling.user;
 
 import java.util.PriorityQueue;
 
+import com.counselling.comparators.RankMaxComparator;
+
 public class Branch {
 	private String branchId;
 	private int intake;

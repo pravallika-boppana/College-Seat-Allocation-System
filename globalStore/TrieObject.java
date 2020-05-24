@@ -6,9 +6,14 @@ import com.counselling.user.Student;
 public class TrieObject {
 	Student student;
 	RequestedAllotment requestedAllotment;
+	
 	TrieObject(Student student, RequestedAllotment requestedAllotment) {
 		this.student = student;
 		this.requestedAllotment = requestedAllotment;
+	}
+	
+	public TrieObject(Student student) {
+		this.student = student;
 	}
 	public Student getStudent() {
 		return student;

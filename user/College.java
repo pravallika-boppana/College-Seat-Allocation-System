@@ -8,8 +8,8 @@ public class College {
 	private String clgName;
 	private String clgId;
 	private int totalIntake;
-	private int filled;
-	private int totalPref;
+	private int filled = 0;
+	private int totalPref = 0;
 	HashMap<String, Branch> branches = new HashMap<String, Branch>();
 	
 	public HashMap<String, Branch> getBranches() {
