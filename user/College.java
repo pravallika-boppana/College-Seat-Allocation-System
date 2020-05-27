@@ -10,7 +10,7 @@ public class College {
 	private int totalIntake;
 	private int filled = 0;
 	private int totalPref = 0;
-	HashMap<String, Branch> branches = new HashMap<String, Branch>();
+	public HashMap<String, Branch> branches = new HashMap<String, Branch>();
 	
 	public HashMap<String, Branch> getBranches() {
 		return branches;
