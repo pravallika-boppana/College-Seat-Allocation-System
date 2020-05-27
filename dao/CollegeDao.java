@@ -11,7 +11,7 @@ public class CollegeDao {
 	static Data data = Data.getInstance();
 	static CollegeDao collegeDao = null;
 	
-	private CollegeDao() { }
+	public CollegeDao() { }
 	public static CollegeDao getInstance() {
 	if (collegeDao == null) {
 		collegeDao = new CollegeDao(); }
