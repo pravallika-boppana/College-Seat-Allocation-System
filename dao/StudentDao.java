@@ -9,7 +9,7 @@ public class StudentDao {
 	
 	static StudentDao studentDao = null;
 	
-	private StudentDao() {};
+	public StudentDao() {};
 	
 	public static  StudentDao getInstance() {
 		if (studentDao == null) {
