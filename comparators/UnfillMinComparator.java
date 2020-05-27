@@ -1,4 +1,4 @@
-package com.counselling.globalStore;
+package com.counselling.comparators;
 
 import java.util.Comparator;
 
