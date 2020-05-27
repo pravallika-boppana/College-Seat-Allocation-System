@@ -68,7 +68,7 @@ public class College {
 		int preferredPercent = getTotalPref()/getTotalIntake();
 		return preferredPercent*100;
 	}
-	public int getUnFilledPercent(){
+	public int getUnfilledPercent(){
 		int unfilledPercent = getUnfilled()/getTotalIntake();
 		return unfilledPercent*100;
 	}
