@@ -14,19 +14,6 @@ public class CounsellingService {
 		collegeDao.updatePrefenceCount(requestedAllotment);
 		return requestedAllotment;
 	}
-	
-	public void topDesirable(int x) {
-	}
-	
-	public void topFilled(int x) {
-		System.out.println("data received");
-		
-	}
-	
-	public void topUnfilled(int x) {
-		System.out.println("data received");
-		
-	}
 
 	public String getAllotedCollege(long stdId) {
 
