@@ -3,17 +3,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import com.counselling.dao.CollegeDao;
-import com.counselling.service.CounsellingService;
-import com.counselling.service.QueryingService;
+import com.counselling.dao.StudentDao;
 import com.counselling.user.Preference;
 import com.counselling.user.RequestedAllotment;
 import com.counselling.service.AllotmentService;;
 public class UserInteractionService {
 	static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-	static CollegeDao collegeDao = new CollegeDao();
-	static CounsellingService counsellingService = new CounsellingService();
-	static AllotmentService allotmentService = new AllotmentService();
-	
+	static CollegeDao collegeDao = CollegeDao.getInstance();
+	static AllotmentService allotmentService = AllotmentService.getInstance();
+	static QueryingService queryingService = QueryingService.getInstance();
+	static StudentDao studentDao = StudentDao.getInstance();
 	public static boolean checkRange(int x) {
 		if (x > 0 && x < 20) 
 			return true;
@@ -24,24 +23,35 @@ public class UserInteractionService {
 		int x;
 		switch(choice) {
 			case 1: System.out.println("Enter Student Id");
-					long stuId = Long.parseLong(br.readLine());
+			        try {
+					long stuId = Long.parseLong(br.readLine()); 
+			        if (!studentDao.isValidStudent(stuId)) {
+						System.out.println("invalid student id");
+						break; } 			        
 					System.out.println("Enter Student preferences as college Id and Branch Id");
 					Preference[] preferences = new Preference[3];
+					boolean inValid = false;
 					for(int i = 0; i < 3; i++) {
 						String[] preference = br.readLine().split(" ");
-						if(collegeDao.isValidClgId(preference[0]) && collegeDao.isValidBranchId(preference[1]) && collegeDao.is_Valid_Branch_In_Clg(preference[0], preference[1]))
+						if(collegeDao.isValidClgId(preference[0]) && collegeDao.isValidBranchId(preference[1]) && collegeDao.doesBranchPresentInCollege(preference[0], preference[1]))
 							preferences[i] = new Preference(preference[0], preference[1]);
-						else
-							break;
+						else {
+							inValid = true;
+							break; }
 					}
-					RequestedAllotment requestAllotment = counsellingService.addPreferences(stuId, preferences);
-					allotmentService.allotClg(requestAllotment);
+					if (inValid) break;
+					RequestedAllotment requestedAllotment = new RequestedAllotment(stuId, preferences);
+					collegeDao.updatePrefenceCount(requestedAllotment);
+					allotmentService.allotClg(requestedAllotment); }
+					catch(NumberFormatException e) {
+						System.out.println("Invald student Id format");
+					}
 					break;
 			case 2:System.out.println("How many top desirable colleges you want?(select a number < 20)");
 					x = Integer.parseInt(br.readLine());
 					if(checkRange(x)) {						
 						    System.out.println("Top " + x +" Desirable colleges");
-					    counsellingService.topDesirable(x);
+						    QueryingService.topDesirable(x);
 					}
 					else
 						System.out.println("Invalid number");
@@ -50,7 +60,7 @@ public class UserInteractionService {
 					x = Integer.parseInt(br.readLine());
 					if(checkRange(x)) {
 						System.out.println("Top " + x +" filled colleges");
-						counsellingService.topFilled(x);
+						QueryingService.topFilled(x);
 					}
 					else
 						System.out.println("Invalid number");
@@ -59,14 +69,14 @@ public class UserInteractionService {
 					x = Integer.parseInt(br.readLine());
 					if(checkRange(x)) {
 						System.out.println("Top " + x +" unfilled colleges");
-						counsellingService.topUnfilled(x);
+						QueryingService.topUnfilled(x);
 					}
 					else
 						System.out.println("Invalid number");
 					break;
 			case 5:System.out.println("Enter student Id");
 					long stdId = Long.parseLong(br.readLine());
-					System.out.println(counsellingService.getAllotedCollege(stdId));
+					System.out.println(queryingService.getAllotedCollege(stdId));
 					break;
 			case 6:System.out.println("Enter college id");
 					String clgId = br.readLine();
@@ -96,7 +106,7 @@ public class UserInteractionService {
 				choice = Integer.parseInt(br.readLine());
 				processRequest(choice);
 				System.out.println("Hit 'Y' to countinue or hit any key to exit");
-				if(br.readLine().equals("Y"))
+				if(br.readLine().equalsIgnoreCase("Y"))
 					continue;
 				else
 					System.out.println("Exited");
