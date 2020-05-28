@@ -1,5 +1,6 @@
 package com.counselling.service;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import com.counselling.dao.CollegeDao;
@@ -11,8 +12,8 @@ import com.counselling.user.Student;
 import java.util.StringTokenizer;
 
 public class DataLoader {
-	CollegeDao collegeDao = new CollegeDao();
-	StudentDao studentDao = new StudentDao();
+	CollegeDao collegeDao = CollegeDao.getInstance();
+	StudentDao studentDao = StudentDao.getInstance();
 
 	public boolean isFileExists(String studentFile, String collegeFile) {
 		if(new File(studentFile).exists() && new File(collegeFile).exists()) 

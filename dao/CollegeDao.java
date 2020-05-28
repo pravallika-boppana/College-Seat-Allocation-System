@@ -9,6 +9,7 @@ import com.counselling.user.RequestedAllotment;
 
 public class CollegeDao {
 	static Data data = Data.getInstance();
+	static RequestedAllotmentDao requestedAllotmentDao = RequestedAllotmentDao.getInstance();
 	static CollegeDao collegeDao = null;
 	
 	private CollegeDao() { }
@@ -40,7 +41,6 @@ public class CollegeDao {
 	}
 	
 		public void updatePrefenceCount(RequestedAllotment requestedAllotment) {
-		RequestedAllotmentDao requestedAllotmentDao = new RequestedAllotmentDao();
 	    requestedAllotmentDao.addRequestedAllotment(requestedAllotment);
 		for(Preference preference : requestedAllotment.getPreferences()) {
 			College college = data.colleges.get(preference.getClgId());

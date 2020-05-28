@@ -9,7 +9,7 @@ public class StudentDao {
 	
 	static StudentDao studentDao = null;
 	
-	public StudentDao() {};
+	private StudentDao() {};
 	
 	public static  StudentDao getInstance() {
 		if (studentDao == null) {
@@ -22,8 +22,16 @@ public class StudentDao {
     	TrieDao.insertObject(student.getStuId(), trieObject); }
     
     
-    public Student getStudent(Long id) {
-    	return TrieDao.getObject(id).getStudent(); }
+    public Student getStudent(Long id) throws NullPointerException
+    {
+    	try {
+    	    return TrieDao.getObject(id).getStudent(); 
+    	}
+    	catch(NullPointerException n) {
+    	
+    	}
+		return null;
+		}
     
 
 	public String getAllotedCollege(long stdId) {
@@ -34,6 +42,11 @@ public class StudentDao {
 		String college =  preferences[allotedPreference].getClgId();
 		String branch = preferences[allotedPreference].getBranchId();
 		return college + " " + branch;
+	}
+
+	public boolean isValidStudent(long stuId) {
+		if (getStudent(stuId) != null) return true;		
+		return false;
 	}
     
 }

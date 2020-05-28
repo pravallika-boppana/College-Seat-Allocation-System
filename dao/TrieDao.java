@@ -27,7 +27,6 @@ public class TrieDao {
         
     }
     
-    
     public static TrieObject getObject(Long id) {
     	Data data = Data.getInstance();
     	Trie root = data.students;

@@ -9,11 +9,26 @@ import com.counselling.user.RequestedAllotment;
 import com.counselling.user.Student;
 
 public class AllotmentService {
+	
+	static AllotmentService allotmentService = new AllotmentService();
+	
+	private AllotmentService() {
+		
+	}
+	
+	public static AllotmentService getInstance() {
+		if (allotmentService == null) {
+			allotmentService = new AllotmentService();
+		}
+		return allotmentService;
+	}
+	
     static CollegeDao collegeDao = CollegeDao.getInstance();
     static StudentDao studentDao = StudentDao.getInstance();
+    static RequestedAllotmentDao requestedAllotmentDao = RequestedAllotmentDao.getInstance();
+	
     public void allotClg(RequestedAllotment requestedAllotment){
         StudentDao studentDao = StudentDao.getInstance();
-        RequestedAllotmentDao requestedAllotmentDao = new RequestedAllotmentDao();
         Student student = studentDao.getStudent(requestedAllotment.getStuId());
         for(int i = requestedAllotment.getAllotedPreference() + 1; i < 3; i++) {
             if(student!=null){
@@ -24,7 +39,7 @@ public class AllotmentService {
                     }
                     else if(isReplacable(student.getRank(), requestedAllotment.getPreferences()[i])) {
                         allocateSeat(requestedAllotment, i);
-                        collegeDao.updateFilled(requestedAllotment.getPreferences()[i], -1);
+                        collegeDao.updateFilled(requestedAllotment.getStuId() ,requestedAllotment.getPreferences()[i], -1);
                         Student replacedStudent = getReplacedStudent(requestedAllotment.getPreferences()[i]);
                         RequestedAllotment replacedReq = requestedAllotmentDao.getRequestedAllotment(replacedStudent.getStuId()); 
                         allotClg(replacedReq);
@@ -59,12 +74,12 @@ public class AllotmentService {
         return branch.getAllotedRanks().poll();
     }
     static void allocateSeat(RequestedAllotment requestedAllotment, int i){
-    	RequestedAllotmentDao requestedAllotmentDao = new RequestedAllotmentDao();
     	requestedAllotmentDao.updateAllotedPreference(requestedAllotment, i);
         requestedAllotment.setAllotedPreference(i);
+        //System.out.println("Before calling uodateflled");
         collegeDao.updateFilled(requestedAllotment.getStuId(), requestedAllotment.getPreferences()[i], 1);
         
-        System.out.println("Seat Allocated Successfully");
+        //System.out.println("Seat Allocated Successfully");
 
    
     }

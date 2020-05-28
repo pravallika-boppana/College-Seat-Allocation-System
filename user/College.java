@@ -10,7 +10,7 @@ public class College {
 	private int totalIntake;
 	private int filled = 0;
 	private int totalPref = 0;
-	public HashMap<String, Branch> branches = new HashMap<String, Branch>();
+	HashMap<String, Branch> branches = new HashMap<String, Branch>();
 	
 	public HashMap<String, Branch> getBranches() {
 		return branches;
@@ -57,21 +57,26 @@ public class College {
 	public void setTotalIntake(int totalIntake) {
 		this.totalIntake = totalIntake;
 	}
-	public int getUnfilled() {
-		return getTotalIntake() - getFilled();
-	}
+	
 	public int getFilledPercent(){
-		int filledPercent = getFilled()/getTotalIntake();
+		System.out.println(this.getClgId() + " " + this.getFilled());
+		int filledPercent = this.getFilled()/this.getTotalIntake();
 		return filledPercent*100;
 	}
 	public int getPreferredPercent(){
-		int preferredPercent = getTotalPref()/getTotalIntake();
+		int preferredPercent = this.getTotalPref()/this.getTotalIntake();
 		return preferredPercent*100;
 	}
-	public int getUnfilledPercent(){
-		int unfilledPercent = getUnfilled()/getTotalIntake();
+	
+	public int getUnfilled() {
+		return this.getTotalIntake() - this.getFilled();
+	}
+	public float getUnFilledPercent(){
+		System.out.println(this.getClgId() + " " + this.getFilled());
+		float unfilledPercent = this.getUnfilled()/this.getTotalIntake();
 		return unfilledPercent*100;
 	}
+	
 	@Override
 	public String toString() {
 		return "College [clgName=" + clgName + ", clgId=" + clgId + ", totalIntake=" + totalIntake + ", branches="

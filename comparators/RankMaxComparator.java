@@ -7,14 +7,12 @@ import com.counselling.user.Student;
 public class RankMaxComparator implements Comparator<Student> {
 
 	@Override
-	public int compare(Student s1, Student s2) {
-		if(s1.getRank() < s2.getRank()){
-            return 1;
-        }
-        if(s1.getRank() > s2.getRank()){
-            return -1;
-        }
-        return 0;
+	public int compare(Student student1, Student student2) {
+		if (student1.getRank() > student2.getRank())
+			return 1;
+		if (student1.getRank() < student2.getRank())
+		    return -1;
+		return 0;
 	}
 
 }
