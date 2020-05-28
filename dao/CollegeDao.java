@@ -11,7 +11,7 @@ public class CollegeDao {
 	static Data data = Data.getInstance();
 	static CollegeDao collegeDao = null;
 	
-	public CollegeDao() { }
+	private CollegeDao() { }
 	public static CollegeDao getInstance() {
 	if (collegeDao == null) {
 		collegeDao = new CollegeDao(); }
@@ -19,9 +19,12 @@ public class CollegeDao {
 	
 	public void addCollege(College college) {
 		data.colleges.put(college.getClgId(), college);
-		college.branches.forEach((key,value) -> data.branches.add(key));
+		college.getBranches().forEach((key,value) -> data.branchIDs.add(key));
 		data.topXUnFilled.add(college);
+		data.topXFilled.add(college);
+		data.topXDesirable.add(college);
 	}
+	
 	
 	public College getCollege(String clgId) {
 		return data.colleges.get(clgId);
@@ -36,23 +39,9 @@ public class CollegeDao {
 		
 	}
 	
-	public void updateFilled(Preference preference, int count) {
-		College college = data.colleges.get(preference.getClgId());
-		if (data.topXFilled.contains(college)) {
-			data.topXFilled.remove(college); }
-		if (data.topXUnFilled.contains(college)) {
-			data.topXUnFilled.remove(college); }	
-		Branch branch = data.colleges.get(preference.getClgId()).getBranches().get(preference.getBranchId());
-		branch.setFilled(branch.getFilled() + count);
-		
-		college.setFilled(college.getFilled() + count);
-		college.getBranches().put(preference.getBranchId(), branch);
-		data.topXUnFilled.add(college);
-		data.topXFilled.add(college);
-		data.colleges.put(preference.getClgId(), college);
-	}
-
-	public void updatePrefenceCount(RequestedAllotment requestedAllotment) {
+		public void updatePrefenceCount(RequestedAllotment requestedAllotment) {
+		RequestedAllotmentDao requestedAllotmentDao = new RequestedAllotmentDao();
+	    requestedAllotmentDao.addRequestedAllotment(requestedAllotment);
 		for(Preference preference : requestedAllotment.getPreferences()) {
 			College college = data.colleges.get(preference.getClgId());
 			if (data.topXDesirable.contains(college)) {
@@ -98,6 +87,7 @@ public class CollegeDao {
 	
 	public void updateFilled(long stuId, Preference preference, int count) {
 		College college = data.colleges.get(preference.getClgId());
+		System.out.println("Entered update filled");
 		if (data.topXFilled.contains(college)) {
 			data.topXFilled.remove(college); }
 		if (data.topXUnFilled.contains(college)) {
@@ -116,6 +106,8 @@ public class CollegeDao {
 		
 	}
 	
+		
+	
 	public boolean isValidClgId(String clgId) {
 		if(data.colleges.containsKey(clgId))
 			return true;
@@ -126,20 +118,21 @@ public class CollegeDao {
 	}
 
 	public boolean isValidBranchId(String branchId) {
-		if(data.branches.contains(branchId))
+		if(data.branchIDs.contains(branchId))
 			return true;
 		else {
 			System.out.println("Invalid branch");
 			return false;
 		}
 	}
-	public boolean is_Valid_Branch_In_Clg(String clgId, String branchId) {
+	public boolean doesBranchPresentInCollege(String clgId, String branchId) {
 		College college = data.colleges.get(clgId);
-		if(college.branches.containsKey(branchId))
+		if(college.getBranches().containsKey(branchId))
 			return true;
 		else {
 			System.out.println("This branch not exists in this college");
 			return false;
 		}
 	}
+	
 }
