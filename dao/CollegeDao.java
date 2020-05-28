@@ -87,7 +87,7 @@ public class CollegeDao {
 	
 	public void updateFilled(long stuId, Preference preference, int count) {
 		College college = data.colleges.get(preference.getClgId());
-		System.out.println("Entered update filled");
+		//System.out.println("Entered update filled");
 		if (data.topXFilled.contains(college)) {
 			data.topXFilled.remove(college); }
 		if (data.topXUnFilled.contains(college)) {
