@@ -36,11 +36,12 @@ public class CollegeDao {
 	}
 	
 	public void getIntakeAndFilled(String clgId) {
+		System.out.println(clgId + " Total : " + data.colleges.get(clgId).getTotalIntake() + " Filled : " + data.colleges.get(clgId).getFilled());
 		data.colleges.get(clgId).getBranches().forEach((k,v) -> System.out.println(v.getBranchId() + " Intake : " + v.getIntake() + " Filled : " + v.getFilled()));
 		
 	}
 	
-		public void updatePrefenceCount(RequestedAllotment requestedAllotment) {
+	public void updatePrefenceCount(RequestedAllotment requestedAllotment) {
 	    requestedAllotmentDao.addRequestedAllotment(requestedAllotment);
 		for(Preference preference : requestedAllotment.getPreferences()) {
 			College college = data.colleges.get(preference.getClgId());
@@ -78,6 +79,7 @@ public class CollegeDao {
 	public static ArrayList<College> getTopXUnFilled(int x) {
 		ArrayList<College> top = new ArrayList<>();
 		while(data.topXUnFilled.size() > 0 && (x--) > 0) {
+//			System.out.println("College polled : " + data.topXUnFilled.peek().getUnFilledPercent(data.topXUnFilled.peek()) + " " + data.topXUnFilled.peek());
 			top.add(data.topXUnFilled.poll()); }
 		for (College college : top) {
 			data.topXUnFilled.add(college); }
@@ -85,20 +87,19 @@ public class CollegeDao {
 		
 	}
 	
-	public void updateFilled(long stuId, Preference preference, int count) {
+	public void updateFilled(long stuId, Preference preference) {
 		College college = data.colleges.get(preference.getClgId());
-		//System.out.println("Entered update filled");
 		if (data.topXFilled.contains(college)) {
 			data.topXFilled.remove(college); }
 		if (data.topXUnFilled.contains(college)) {
 			data.topXUnFilled.remove(college); }
+		college.setFilled(college.getFilled() + 1);
 		StudentDao studentDao = StudentDao.getInstance();
-		Branch branch = data.colleges.get(preference.getClgId()).getBranches().get(preference.getBranchId());
-		branch.setFilled(branch.getFilled() + count);
-		if (count == 1) {
-			branch.getAllotedRanks().add(studentDao.getStudent(stuId));}
-		college.setFilled(college.getFilled() + count);
-		college.getBranches().put(preference.getBranchId(), branch);
+		Branch branch = data.colleges.get(college.getClgId()).getBranches().get(preference.getBranchId());
+		branch.setFilled(branch.getFilled() + 1);
+		branch.getAllotedRanks().add(studentDao.getStudent(stuId));
+		college.getBranches().put(branch.getBranchId(), branch);
+		data.colleges.put(college.getClgId(), college);
 		data.topXUnFilled.add(college);
 		data.topXFilled.add(college);
 		data.colleges.put(preference.getClgId(), college);

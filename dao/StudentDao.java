@@ -36,9 +36,10 @@ public class StudentDao {
 
 	public String getAllotedCollege(long stdId) {
 		RequestedAllotment requestedAllotment = TrieDao.getObject(stdId).getRequestedAllotment();
+		if (requestedAllotment == null) return "not appeared for counselling";
 		Preference preferences[] = requestedAllotment.getPreferences(); 
 		int allotedPreference = requestedAllotment.getAllotedPreference();
-		if (allotedPreference == -1) return "not alloted";
+		if (allotedPreference == -1) return "Student is eligible for none of his preferences";
 		String college =  preferences[allotedPreference].getClgId();
 		String branch = preferences[allotedPreference].getBranchId();
 		return college + " " + branch;

@@ -58,22 +58,21 @@ public class College {
 		this.totalIntake = totalIntake;
 	}
 	
-	public int getFilledPercent(){
-		System.out.println(this.getClgId() + " " + this.getFilled());
-		int filledPercent = this.getFilled()/this.getTotalIntake();
+	
+	public float getFilledPercent(College college){
+		float filledPercent = (float)college.getFilled()/college.getTotalIntake();
 		return filledPercent*100;
 	}
-	public int getPreferredPercent(){
-		int preferredPercent = this.getTotalPref()/this.getTotalIntake();
+	public int getPreferredPercent(College college){
+		int preferredPercent = college.getTotalPref()/college.getTotalIntake();
 		return preferredPercent*100;
 	}
 	
-	public int getUnfilled() {
-		return this.getTotalIntake() - this.getFilled();
+	public int getUnfilled(College college) {
+		return college.getTotalIntake() - college.getFilled();
 	}
-	public float getUnFilledPercent(){
-		System.out.println(this.getClgId() + " " + this.getFilled());
-		float unfilledPercent = this.getUnfilled()/this.getTotalIntake();
+	public float getUnFilledPercent(College college){
+		float unfilledPercent = (float)getUnfilled(college)/college.getTotalIntake();
 		return unfilledPercent*100;
 	}
 	

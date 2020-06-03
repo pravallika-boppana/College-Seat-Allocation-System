@@ -30,13 +30,13 @@ public class QueryingService {
 	static public void topFilled(int x){
 		ArrayList<College> topFilledColleges = CollegeDao.getTopXFilled(x);
 		for(int i = 0; i < topFilledColleges.size(); i++) {
-			System.out.println((i + 1) + " " + topFilledColleges.get(i).getClgId() + " " + topFilledColleges.get(i).getFilledPercent() + "%"); } }
+			System.out.println((i + 1) + " " + topFilledColleges.get(i).getClgId() + " " + topFilledColleges.get(i).getFilledPercent(topFilledColleges.get(i)) + "%"); } }
 	
 	
 	static public void topUnfilled(int x){
 		ArrayList<College> topUnFilledColleges = CollegeDao.getTopXUnFilled(x);;
 		for(int i = 0; i < topUnFilledColleges.size(); i++) {
-			System.out.println((i + 1) + " " + topUnFilledColleges.get(i).getClgId() + " " + topUnFilledColleges.get(i).getUnFilledPercent() + "%"); } }
+			System.out.println((i + 1) + " " + topUnFilledColleges.get(i).getClgId() + " " + topUnFilledColleges.get(i).getUnFilledPercent(topUnFilledColleges.get(i)) + "%"); } }
 
 	public String getAllotedCollege(long stdId) {
 		return studentDao.getAllotedCollege(stdId);

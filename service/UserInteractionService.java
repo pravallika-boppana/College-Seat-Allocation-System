@@ -23,29 +23,30 @@ public class UserInteractionService {
 		int x;
 		switch(choice) {
 			case 1: System.out.println("Enter Student Id");
-			        try {
-					long stuId = Long.parseLong(br.readLine()); 
-			        if (!studentDao.isValidStudent(stuId)) {
-						System.out.println("invalid student id");
-						break; } 			        
-					System.out.println("Enter Student preferences as college Id and Branch Id");
-					Preference[] preferences = new Preference[3];
-					boolean inValid = false;
-					for(int i = 0; i < 3; i++) {
-						String[] preference = br.readLine().split(" ");
-						if(collegeDao.isValidClgId(preference[0]) && collegeDao.isValidBranchId(preference[1]) && collegeDao.doesBranchPresentInCollege(preference[0], preference[1]))
-							preferences[i] = new Preference(preference[0], preference[1]);
-						else {
-							inValid = true;
-							break; }
-					}
-					if (inValid) break;
-					RequestedAllotment requestedAllotment = new RequestedAllotment(stuId, preferences);
-					collegeDao.updatePrefenceCount(requestedAllotment);
-					allotmentService.allotClg(requestedAllotment); }
-					catch(NumberFormatException e) {
-						System.out.println("Invald student Id format");
-					}
+			try {
+				long stuId = Long.parseLong(br.readLine()); 
+		        if (!studentDao.isValidStudent(stuId)) {
+					System.out.println("invalid student id");
+					break; } 			        
+				System.out.println("Enter Student preferences as college Id and Branch Id");
+				Preference[] preferences = new Preference[3];
+				boolean inValid = false;
+				for(int i = 0; i < 3; i++) {
+					String[] preference = br.readLine().split(" ");
+					if(collegeDao.isValidClgId(preference[0]) && collegeDao.isValidBranchId(preference[1]) && collegeDao.doesBranchPresentInCollege(preference[0], preference[1]))
+						preferences[i] = new Preference(preference[0], preference[1]);
+					else {
+						inValid = true;
+						break; }
+				}
+				if (inValid) break;
+				RequestedAllotment requestedAllotment = new RequestedAllotment(stuId, preferences);
+				collegeDao.updatePrefenceCount(requestedAllotment);
+				allotmentService.allotClg(requestedAllotment); }
+				catch(NumberFormatException e) {
+					System.out.println("Invald student Id format");
+				}
+					
 					break;
 			case 2:System.out.println("How many top desirable colleges you want?(select a number < 20)");
 					x = Integer.parseInt(br.readLine());
@@ -81,7 +82,11 @@ public class UserInteractionService {
 			case 6:System.out.println("Enter college id");
 					String clgId = br.readLine();
 					collegeDao.getThreshold(clgId);
-					break;	
+					break;
+			case 7:System.out.println("Enter college id");
+			    String clgId2 = br.readLine();
+			    collegeDao.getIntakeAndFilled(clgId2);
+			    break;
 			default:System.out.println("Invalid choice");
 			        break;
 		}
@@ -103,6 +108,7 @@ public class UserInteractionService {
 				System.out.println("4.Top X unfilled colleges");
 				System.out.println("5.Get Alloted College");
 				System.out.println("6.Get Threshold of the college");
+				System.out.println("7.Get Intake and Filled of the college");
 				choice = Integer.parseInt(br.readLine());
 				processRequest(choice);
 				System.out.println("Hit 'Y' to countinue or hit any key to exit");
