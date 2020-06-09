@@ -28,7 +28,7 @@ public class AllotmentService {
     static StudentDao studentDao = StudentDao.getInstance();
     static RequestedAllotmentDao requestedAllotmentDao = RequestedAllotmentDao.getInstance();
 	
-    public void allotClg(RequestedAllotment requestedAllotment){
+    public synchronized void allotClg(RequestedAllotment requestedAllotment){
         StudentDao studentDao = StudentDao.getInstance();
         Student student = studentDao.getStudent(requestedAllotment.getStuId());
         for(int i = requestedAllotment.getAllotedPreference() + 1; i < 3; i++) {
