@@ -41,8 +41,9 @@ public class UserInteractionService {
 				}
 				if (inValid) break;
 				RequestedAllotment requestedAllotment = new RequestedAllotment(stuId, preferences);
-				collegeDao.updatePrefenceCount(requestedAllotment);
-				allotmentService.allotClg(requestedAllotment); }
+                CounsellingThread counsellingThread = new CounsellingThread(requestedAllotment, allotmentService, collegeDao);
+                counsellingThread.start();
+				}
 				catch(NumberFormatException e) {
 					System.out.println("Invald student Id format");
 				}
@@ -93,7 +94,6 @@ public class UserInteractionService {
 	}
 
 	public static void main(String[] args) throws IOException {
-		
 		DataLoader dataLoader = new DataLoader();
 		String studentFile = args[0];
 		String collegeFile = args[1];
