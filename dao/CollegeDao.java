@@ -26,6 +26,17 @@ public class CollegeDao {
 		data.topXDesirable.add(college);
 	}
 	
+	public void updateCollege(College college) {
+		data.colleges.put(college.getClgId(), college);
+		if (data.topXFilled.contains(college)) {
+			data.topXFilled.remove(college); }
+		if (data.topXUnFilled.contains(college)) {
+			data.topXUnFilled.remove(college); }
+		data.topXUnFilled.add(college);
+		data.topXFilled.add(college);
+		
+		
+	}
 	
 	public College getCollege(String clgId) {
 		return data.colleges.get(clgId);
@@ -79,7 +90,6 @@ public class CollegeDao {
 	public static ArrayList<College> getTopXUnFilled(int x) {
 		ArrayList<College> top = new ArrayList<>();
 		while(data.topXUnFilled.size() > 0 && (x--) > 0) {
-//			System.out.println("College polled : " + data.topXUnFilled.peek().getUnFilledPercent(data.topXUnFilled.peek()) + " " + data.topXUnFilled.peek());
 			top.add(data.topXUnFilled.poll()); }
 		for (College college : top) {
 			data.topXUnFilled.add(college); }

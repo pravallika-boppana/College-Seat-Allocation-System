@@ -53,7 +53,6 @@ public class AllotmentService {
     }
     static boolean isEligible(long rank, Preference preference) {
         Branch branch = collegeDao.getBranchInCollege(preference.getClgId(), preference.getBranchId());
-        System.out.println("In is elible threshold : " + branch.getThreshold() + " rank : " + rank);
         if(rank <= branch.getThreshold()) {
             return true; }
         return false;
@@ -67,9 +66,6 @@ public class AllotmentService {
     static boolean isReplacable(long rank, Preference preference){
         Branch branch = collegeDao.getBranchInCollege(preference.getClgId(), preference.getBranchId());
         Student student = branch.getAllotedRanks().peek();
-        System.out.println("ASking for replacement");
-        System.out.println("Current rank : " + rank);
-        System.out.println("replacable student rank : " + student.getRank());
         if(rank < student.getRank())
             return true;
         return false;
@@ -81,7 +77,7 @@ public class AllotmentService {
     	Student student = branch.getAllotedRanks().poll();
     	branch.setFilled(branch.getFilled() - 1);
     	college.getBranches().put(preference.getBranchId(), branch);
-    	collegeDao.addCollege(college);
+    	collegeDao.updateCollege(college);
     	return student;
     }
     static void allocateSeat(RequestedAllotment requestedAllotment, int i){
